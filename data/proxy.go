@@ -11,5 +11,10 @@ func ExtractImageURL(image string) string {
 		return ""
 	}
 
+	// assets.genius.com placeholders can't go through the image proxy.
+	if u.Host == "assets.genius.com" {
+		return "/static/default_cover_image.png"
+	}
+
 	return fmt.Sprintf("/images%s", u.Path)
 }
